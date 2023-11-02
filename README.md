@@ -18,3 +18,6 @@ All have some preloaded selections but can always be updated in the CSV files.
 ![image](https://github.com/PCMonsterx/ComfyUI-CSV-Loader/assets/58462961/9b739535-13ef-4005-a3f7-7e7d65f23580)
 
 https://www.youtube.com/watch?v=aayBpoU_qes
+
+@PCMonsterx
+https://github.com/PCMonsterx/ComfyUI-CSV-Loader
