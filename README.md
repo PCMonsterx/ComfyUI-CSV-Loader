@@ -11,3 +11,10 @@ The folder with the CSV files is located in the ComfyUI\custom_nodes\ComfyUI-CSV
 The CSV files include artists.csv, artmovements.csv, characters.csv, composition.csv, lighting.csv, negative.csv, positive.csv, settings.csv,
 and styles.csv.
 All have some preloaded selections but can always be updated in the CSV files.
+
+![image](https://github.com/PCMonsterx/ComfyUI-CSV-Loader/assets/58462961/f489457d-e093-45ca-b5ea-a67ec266f439)
+
+![image](https://github.com/PCMonsterx/ComfyUI-CSV-Loader/assets/58462961/fed37f6a-820f-45f4-abf0-8ae17d322a22)
+![image](https://github.com/PCMonsterx/ComfyUI-CSV-Loader/assets/58462961/9b739535-13ef-4005-a3f7-7e7d65f23580)
+
+https://www.youtube.com/watch?v=aayBpoU_qes
