@@ -3,7 +3,7 @@ CSV Loader for prompt building within ComfyUI interface.
 
 Allows access to positive/negative prompts associated with a name. Selections are being pulled from CSV files.
 
-CSV Loader for basic image composition. Unzip the Zip file and place it into the custom_nodes folder within your ComfyUI installation.
+CSV Loader for basic image composition. Unzip the ComfyUI-CSV-Loader.zip file and place it into the custom_nodes folder within your ComfyUI installation. Do not change the naming so the mapping for the CSV file stay consistent.
 
 Within the folder you will find a ComyUI_Simple_Workflow.png you can drag into ComfyUI to test the nodes are working or add them to your current workflow to try them out.
 
