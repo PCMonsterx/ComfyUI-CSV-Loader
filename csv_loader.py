@@ -6,7 +6,7 @@ import folder_paths
 
 class ArtistsCSVLoader:
     """
-    Loads csv file with artists. For migration purposes from automatic11111 webui.
+    Loads csv file with artists.
     """
     
     @staticmethod
@@ -21,8 +21,8 @@ class ArtistsCSVLoader:
         """
         artists = {"Error loading artists.csv, check the console": ["",""]}
         if not os.path.exists(artists_path):
-            print(f"""Error. No artists.csv found. Put your artists.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No artists.csv found. Put your artists.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return artists
         try:
@@ -30,8 +30,8 @@ class ArtistsCSVLoader:
                 artists = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 artists = {x[0]: [x[1],x[2]] for x in artists}
         except Exception as e:
-            print(f"""Error loading artists.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading artists.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return artists
@@ -59,7 +59,7 @@ class ArtistsCSVLoader:
 
 class ArtmovementsCSVLoader:
     """
-    Loads csv file with artmovements. For migration purposes from automatic11111 webui.
+    Loads csv file with artmovements.
     """
     
     @staticmethod
@@ -74,8 +74,8 @@ class ArtmovementsCSVLoader:
         """
         artmovements = {"Error loading artmovements.csv, check the console": ["",""]}
         if not os.path.exists(artmovements_path):
-            print(f"""Error. No artmovements.csv found. Put your artmovements.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No artmovements.csv found. Put your artmovements.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return artmovements
         try:
@@ -83,8 +83,8 @@ class ArtmovementsCSVLoader:
                 artmovements = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 artmovements = {x[0]: [x[1],x[2]] for x in artmovements}
         except Exception as e:
-            print(f"""Error loading artmovements.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading artmovements.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return artmovements
@@ -112,7 +112,7 @@ class ArtmovementsCSVLoader:
 
 class CharactersCSVLoader:
     """
-    Loads csv file with characters. For migration purposes from automatic11111 webui.
+    Loads csv file with characters.
     """
     
     @staticmethod
@@ -127,8 +127,8 @@ class CharactersCSVLoader:
         """
         characters = {"Error loading characters.csv, check the console": ["",""]}
         if not os.path.exists(characters_path):
-            print(f"""Error. No characters.csv found. Put your characters.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No characters.csv found. Put your characters.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return characters
         try:
@@ -136,8 +136,8 @@ class CharactersCSVLoader:
                 characters = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 characters = {x[0]: [x[1],x[2]] for x in characters}
         except Exception as e:
-            print(f"""Error loading characters.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading characters.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return characters
@@ -160,12 +160,63 @@ class CharactersCSVLoader:
     def execute(self, characters):
             return (self.characters_csv[characters][0], self.characters_csv[characters][1])
 
+#COLORS
+
+class ColorsCSVLoader:
+    """
+    Loads csv file with colors.
+    """
+    
+    @staticmethod
+    def load_colors_csv(colors_path: str):
+        """Loads csv file with colors. It has only one column.
+        Ignore the first row (header).
+        positive_prompt are strings separated by comma. Each string is a prompt.
+        negative_prompt are strings separated by comma. Each string is a prompt.
+
+        Returns:
+            list: List of colors. Each style is a dict with keys: style_name and value: [positive_prompt, negative_prompt]
+        """
+        colors = {"Error loading colors.csv, check the console": ["",""]}
+        if not os.path.exists(colors_path):
+            print(f"""Error. No colors.csv found. Put your colors.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
+            """)
+            return colors
+        try:
+            with open(colors_path, "r", encoding="utf-8") as f:    
+                colors = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
+                colors = {x[0]: [x[1],x[2]] for x in colors}
+        except Exception as e:
+            print(f"""Error loading colors.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
+                    Error: {e}
+            """)
+        return colors
+        
+    @classmethod
+    def INPUT_TYPES(cls):
+        cls.colors_csv = cls.load_colors_csv(os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-CSV-Loader\\CSV\\colors.csv"))
+        return {
+            "required": {
+                "colors": (list(cls.colors_csv.keys()),),
+            },
+                                
+        }
+
+    RETURN_TYPES = ("STRING","STRING")
+    RETURN_NAMES = ("positive prompt", "negative prompt")
+    FUNCTION = "execute"
+    CATEGORY = "CSV Loaders"   
+
+    def execute(self, colors):
+            return (self.colors_csv[colors][0], self.colors_csv[colors][1])
 
 # COMPOSITION
 
 class CompositionCSVLoader:
     """
-    Loads csv file with composition. For migration purposes from automatic11111 webui.
+    Loads csv file with composition.
     """
     
     @staticmethod
@@ -180,8 +231,8 @@ class CompositionCSVLoader:
         """
         composition = {"Error loading composition.csv, check the console": ["",""]}
         if not os.path.exists(composition_path):
-            print(f"""Error. No composition.csv found. Put your composition.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No composition.csv found. Put your composition.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return composition
         try:
@@ -189,8 +240,8 @@ class CompositionCSVLoader:
                 composition = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 composition = {x[0]: [x[1],x[2]] for x in composition}
         except Exception as e:
-            print(f"""Error loading composition.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading composition.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return composition
@@ -217,7 +268,7 @@ class CompositionCSVLoader:
 #LIGHTING
 class LightingCSVLoader:
     """
-    Loads csv file with lighting. For migration purposes from automatic11111 webui.
+    Loads csv file with lighting.
     """
     
     @staticmethod
@@ -232,8 +283,8 @@ class LightingCSVLoader:
         """
         lighting = {"Error loading lighting.csv, check the console": ["",""]}
         if not os.path.exists(lighting_path):
-            print(f"""Error. No lighting.csv found. Put your lighting.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No lighting.csv found. Put your lighting.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return lighting
         try:
@@ -241,8 +292,8 @@ class LightingCSVLoader:
                 lighting = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 lighting = {x[0]: [x[1],x[2]] for x in lighting}
         except Exception as e:
-            print(f"""Error loading lighting.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading lighting.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return lighting
@@ -270,7 +321,7 @@ class LightingCSVLoader:
 
 class SettingsCSVLoader:
     """
-    Loads csv file with settings. For migration purposes from automatic11111 webui.
+    Loads csv file with settings.
     """
     
     @staticmethod
@@ -285,8 +336,8 @@ class SettingsCSVLoader:
         """
         settings = {"Error loading settings.csv, check the console": ["",""]}
         if not os.path.exists(settings_path):
-            print(f"""Error. No settings.csv found. Put your settings.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No settings.csv found. Put your settings.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return settings
         try:
@@ -294,8 +345,8 @@ class SettingsCSVLoader:
                 settings = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 settings = {x[0]: [x[1],x[2]] for x in settings}
         except Exception as e:
-            print(f"""Error loading settings.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading settings.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return settings
@@ -323,7 +374,7 @@ class SettingsCSVLoader:
 
 class StylesCSVLoader:
     """
-    Loads csv file with styles. For migration purposes from automatic11111 webui.
+    Loads csv file with styles.
     """
     
     @staticmethod
@@ -338,8 +389,8 @@ class StylesCSVLoader:
         """
         styles = {"Error loading styles.csv, check the console": ["",""]}
         if not os.path.exists(styles_path):
-            print(f"""Error. No styles.csv found. Put your styles.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No styles.csv found. Put your styles.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return styles
         try:
@@ -347,8 +398,8 @@ class StylesCSVLoader:
                 styles = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 styles = {x[0]: [x[1],x[2]] for x in styles}
         except Exception as e:
-            print(f"""Error loading styles.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading styles.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return styles
@@ -376,7 +427,7 @@ class StylesCSVLoader:
 
 class PositiveCSVLoader:
     """
-    Loads csv file with positive. For migration purposes from automatic11111 webui.
+    Loads csv file with positive.
     """
     
     @staticmethod
@@ -391,8 +442,8 @@ class PositiveCSVLoader:
         """
         positive = {"Error loading positive.csv, check the console": ["",""]}
         if not os.path.exists(positive_path):
-            print(f"""Error. No positive.csv found. Put your positive.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No positive.csv found. Put your positive.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return positive
         try:
@@ -400,8 +451,8 @@ class PositiveCSVLoader:
                 positive = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 positive = {x[0]: [x[1],x[2]] for x in positive}
         except Exception as e:
-            print(f"""Error loading positive.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading positive.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return positive
@@ -429,7 +480,7 @@ class PositiveCSVLoader:
 
 class NegativeCSVLoader:
     """
-    Loads csv file with negative. For migration purposes from automatic11111 webui.
+    Loads csv file with negative.
     """
     
     @staticmethod
@@ -444,8 +495,8 @@ class NegativeCSVLoader:
         """
         negative = {"Error loading negative.csv, check the console": ["",""]}
         if not os.path.exists(negative_path):
-            print(f"""Error. No negative.csv found. Put your negative.csv in the root directory of ComfyUI. Then press "Refresh".
-                  Your current root directory is: {folder_paths.base_path}
+            print(f"""Error. No negative.csv found. Put your negative.csv in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                  Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
             """)
             return negative
         try:
@@ -453,8 +504,8 @@ class NegativeCSVLoader:
                 negative = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 negative = {x[0]: [x[1],x[2]] for x in negative}
         except Exception as e:
-            print(f"""Error loading negative.csv. Make sure it is in the root directory of ComfyUI. Then press "Refresh".
-                    Your current root directory is: {folder_paths.base_path}
+            print(f"""Error loading negative.csv. Make sure it is in the comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder of ComfyUI. Then press "Refresh".
+                    Your current comfyui\custom_nodes\ComfyUI-CSV-Loader\CSV folder is: {folder_paths.base_path}
                     Error: {e}
             """)
         return negative
@@ -484,6 +535,7 @@ NODE_CLASS_MAPPINGS = {
     "Load Artists CSV": ArtistsCSVLoader,
     "Load Artmovements CSV": ArtmovementsCSVLoader,
     "Load Characters CSV": CharactersCSVLoader,
+    "Load Colors CSV": ColorsCSVLoader,
     "Load Composition CSV": CompositionCSVLoader,
     "Load Lighting CSV": LightingCSVLoader,
     "Load Settings CSV": SettingsCSVLoader,
@@ -496,6 +548,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "ArtistsCSVLoader": "Load Artists CSV Node",
     "ArtmovementsCSVLoader": "Load Art Movements CSV Node",
     "CharactersCSVLoader": "Load Characters CSV Node",
+    "ColorsCSVLoader": "Load Colors CSV Node",
     "CompositionCSVLoader": "Load Composition CSV Node",
     "LightingCSVLoader": "Load Lighting CSV Node",
     "SettingsCSVLoader": "Load Settings CSV Node",
