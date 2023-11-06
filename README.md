@@ -12,7 +12,7 @@ The CSV files include artists.csv, artmovements.csv, characters.csv, composition
 and styles.csv.
 All have some preloaded selections but can always be updated in the CSV files.
 
-Wrokflow: https://comfyworkflows.com/?workflow_id=320ac429-28cd-4192-a7c3-da1ed3fd1893 
+Wokflow: https://comfyworkflows.com/?workflow_id=320ac429-28cd-4192-a7c3-da1ed3fd1893 
 
 ![image](https://github.com/PCMonsterx/ComfyUI-CSV-Loader/assets/58462961/f489457d-e093-45ca-b5ea-a67ec266f439)
 
