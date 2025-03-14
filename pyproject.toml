@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-csv-loader"
+description = "CSV Loader for prompt building within ComfyUI interface. Allows access to positive/negative prompts associated with a name. Selections are being pulled from CSV files."
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/PCMonsterx/ComfyUI-CSV-Loader"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-CSV-Loader"
+Icon = ""
